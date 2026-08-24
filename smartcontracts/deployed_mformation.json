@@ -1,0 +1,25 @@
+{
+  "contract": "MissionFormation",
+  "address": "0x2E92A98A129F1AB35F6fE3B31F5476C2Da39c70d",
+  "authority": "0xFE3B557E8Fb62b89F4916B721be55cEb828dBd73",
+  "network": "rede_uav",
+  "params": {
+    "toleranceWindow": 20,
+    "maxViolations": 2,
+    "degradedThreshold": 2,
+    "quorum": 2,
+    "transitionTime": 25,
+    "formationId": 0,
+    "dMinSq": 4000000,
+    "dMaxSq": 64000000,
+    "rMaxSq": 25000000,
+    "formationLabel": "LINHA",
+    "dMinApprox": "2 unidades",
+    "dMaxApprox": "8 unidades",
+    "rMaxApprox": "5 unidades"
+  },
+  "deployedAt": "2026-08-03T08:52:38.757Z",
+  "txHash": "0xa5a7e661d0ffb51157d74b5a2569e23a00659bc8239dfa410fa2bd8203d8ca32",
+  "blockNumber": 5400,
+  "gasUsed": "2486045"
+}

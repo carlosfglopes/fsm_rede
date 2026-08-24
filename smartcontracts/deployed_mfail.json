@@ -1,0 +1,18 @@
+{
+  "contract": "MissionFail",
+  "address": "0x8090CbD6Bb3B28BdA98f90ff0065066b6470C910",
+  "authority": "0xFE3B557E8Fb62b89F4916B721be55cEb828dBd73",
+  "network": "rede_uav",
+  "params": {
+    "heartbeatTimeoutSec": 15,
+    "quorumThreshold": 2,
+    "abortFailureThreshold": 2,
+    "degradedCapacityThreshold": 2,
+    "formationMode": 0,
+    "formationModeLabel": "FULL"
+  },
+  "deployedAt": "2026-08-03T10:20:27.510Z",
+  "txHash": "0x1654bea46b6c991a2f7663dac5aac88326117c60f0d19ba547aa0309a6c093f2",
+  "blockNumber": 7971,
+  "gasUsed": "2669345"
+}

@@ -1,0 +1,156 @@
+services:
+  uav1:
+    image: hyperledger/besu:latest
+    container_name: uav1
+    volumes:
+      - ./networkFiles/genesis.json:/opt/besu/genesis.json
+      - ./nodes/uav1:/opt/besu/data
+    command:
+      - --data-path=/opt/besu/data
+      - --genesis-file=/opt/besu/genesis.json
+      - --sync-min-peers=1
+      - --rpc-http-enabled
+      - --rpc-http-host=0.0.0.0
+      - --rpc-http-port=8545
+      - --rpc-http-api=ETH,NET,IBFT,ADMIN
+      - --host-allowlist=*
+      - --rpc-http-cors-origins=all
+      - --p2p-port=30303
+      - --metrics-enabled
+      - --metrics-host=0.0.0.0
+      - --metrics-port=9545
+      - --logging=INFO
+    ports:
+      - "8545:8545"
+      - "30303:30303"
+      - "9545:9545"
+    networks:
+      besu-net:
+        ipv4_address: 10.88.0.11
+
+  uav2:
+    image: hyperledger/besu:latest
+    container_name: uav2
+    volumes:
+      - ./networkFiles/genesis.json:/opt/besu/genesis.json
+      - ./nodes/uav2:/opt/besu/data
+    command:
+      - --data-path=/opt/besu/data
+      - --genesis-file=/opt/besu/genesis.json
+      - --sync-min-peers=1
+      - --bootnodes=enode://60bdda5f9a0d814c5ed305da07830a88b521efc3bfa3406a23e52def487cd180188a14a47d13bbe25bd4d9609f91f6ce9fee1498c3ad82c3afe44d2faafc5105@10.88.0.11:30303
+      - --rpc-http-enabled
+      - --rpc-http-host=0.0.0.0
+      - --rpc-http-port=8546
+      - --rpc-http-api=ETH,NET,IBFT,ADMIN
+      - --host-allowlist=*
+      - --rpc-http-cors-origins=all
+      - --p2p-port=30304
+      - --metrics-enabled
+      - --metrics-host=0.0.0.0
+      - --metrics-port=9545
+      - --logging=INFO
+    ports:
+      - "8546:8546"
+      - "30304:30304"
+    networks:
+      besu-net:
+        ipv4_address: 10.88.0.12
+
+  uav3:
+    image: hyperledger/besu:latest
+    container_name: uav3
+    volumes:
+      - ./networkFiles/genesis.json:/opt/besu/genesis.json
+      - ./nodes/uav3:/opt/besu/data
+    command:
+      - --data-path=/opt/besu/data
+      - --genesis-file=/opt/besu/genesis.json
+      - --sync-min-peers=1
+      - --bootnodes=enode://60bdda5f9a0d814c5ed305da07830a88b521efc3bfa3406a23e52def487cd180188a14a47d13bbe25bd4d9609f91f6ce9fee1498c3ad82c3afe44d2faafc5105@10.88.0.11:30303
+      - --rpc-http-enabled
+      - --rpc-http-host=0.0.0.0
+      - --rpc-http-port=8547
+      - --rpc-http-api=ETH,NET,IBFT,ADMIN
+      - --host-allowlist=*
+      - --rpc-http-cors-origins=all
+      - --p2p-port=30305
+      - --metrics-enabled
+      - --metrics-host=0.0.0.0
+      - --metrics-port=9545
+      - --logging=INFO
+    ports:
+      - "8547:8547"
+      - "30305:30305"
+    networks:
+      besu-net:
+        ipv4_address: 10.88.0.13
+
+  uav4:
+    image: hyperledger/besu:latest
+    container_name: uav4
+    volumes:
+      - ./networkFiles/genesis.json:/opt/besu/genesis.json
+      - ./nodes/uav4:/opt/besu/data
+    command:
+      - --data-path=/opt/besu/data
+      - --genesis-file=/opt/besu/genesis.json
+      - --sync-min-peers=1
+      - --bootnodes=enode://60bdda5f9a0d814c5ed305da07830a88b521efc3bfa3406a23e52def487cd180188a14a47d13bbe25bd4d9609f91f6ce9fee1498c3ad82c3afe44d2faafc5105@10.88.0.11:30303
+      - --rpc-http-enabled
+      - --rpc-http-host=0.0.0.0
+      - --rpc-http-port=8548
+      - --rpc-http-api=ETH,NET,IBFT,ADMIN
+      - --host-allowlist=*
+      - --rpc-http-cors-origins=all
+      - --p2p-port=30306
+      - --metrics-enabled
+      - --metrics-host=0.0.0.0
+      - --metrics-port=9545
+      - --logging=INFO
+    ports:
+      - "8548:8548"
+      - "30306:30306"
+    networks:
+      besu-net:
+        ipv4_address: 10.88.0.14
+
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./prometheus-data:/prometheus
+    command:
+      - --config.file=/etc/prometheus/prometheus.yml
+      - --storage.tsdb.path=/prometheus
+    ports:
+      - "9090:9090"
+    networks:
+      besu-net:
+        aliases:
+          - prometheus
+
+  grafana:
+    image: grafana/grafana-oss:latest
+    container_name: grafana
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=gollwitzer
+    volumes:
+      - ./grafana-data:/var/lib/grafana
+    networks:
+      besu-net:
+        aliases:
+          - grafana
+
+networks:
+  besu-net:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 10.88.0.0/24
+          gateway: 10.88.0.1

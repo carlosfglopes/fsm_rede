@@ -1,0 +1,17 @@
+{
+  "contract": "MissionRecon",
+  "address": "0x4eED6F34E484FB2BEcD953C7A276C0AeeEB3AECa",
+  "authority": "0xFE3B557E8Fb62b89F4916B721be55cEb828dBd73",
+  "network": "rede_uav",
+  "params": {
+    "minUAVsForElection": 2,
+    "reportTimeoutSec": 20,
+    "maxReelections": 2,
+    "weightBattery": 60,
+    "weightSpeed": 40
+  },
+  "deployedAt": "2026-08-03T08:49:28.358Z",
+  "txHash": "0x27c3439e97146e06468f58a90a0f3736c0fc1c03b4a7545628f5ebc90a0e5f1e",
+  "blockNumber": 5305,
+  "gasUsed": "1588818"
+}

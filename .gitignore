@@ -1,0 +1,23 @@
+# Besu node data
+rede_uav/nodes/
+
+# Keys dentro de networkFiles (mas mantém genesis.json)
+rede_uav/networkFiles/keys/
+
+# Runtime data
+rede_uav/grafana-data/
+rede_uav/prometheus-data/
+
+# Hardhat
+smartcontracts/artifacts/
+smartcontracts/cache/
+smartcontracts/node_modules/
+
+# Secrets
+smartcontracts/.env
+
+# Logs
+*.log
+# Python cache
+__pycache__/
+*.pyc

@@ -1,0 +1,18 @@
+global:
+  scrape_interval: 15s
+
+scrape_configs:
+  - job_name: "besu"
+    metrics_path: /metrics
+    static_configs:
+      - targets:
+          - "uav1:9545"
+          - "uav2:9545"
+          - "uav3:9545"
+          - "uav4:9545"
+
+  - job_name: "message_metrics_exporter"
+    metrics_path: /metrics
+    static_configs:
+      - targets:
+          - "host.docker.internal:3001"

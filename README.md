@@ -1,6 +1,6 @@
 # fsm_rede — Model 1: Fully Decentralized FSM
 
-Part of the MSc dissertation *"Dynamic Smart Contracts for Autonomous Agent Coordination."* This repo implements **Model 1**: three mission scenarios (failure response, formation-keeping, reconnaissance leader election) as plain, non-upgradeable Solidity contracts, each driven by an explicit on-chain state machine. It is the baseline against which the other two models are compared:
+Part of the MSc dissertation *"Dynamic Smart Contracts for Autonomous Agent Coordination."* This repo implements **Model 1**: three mission scenarios (failure response, formation keeping, reconnaissance leader election) as plain, non-upgradeable Solidity contracts, each driven by an explicit on-chain state machine. It is the baseline against which the other two models are compared:
 
 - Model 2 (proxy/UUPS upgradeability): [`proxy_rede`](https://github.com/carlosfglopes/proxy_rede)
 - Model 3 (hybrid): [`hibrido_rede`](https://github.com/carlosfglopes/hibrido_rede)
@@ -18,9 +18,9 @@ export PRIVATE_KEY=0x...                 # authority account
 
 | File | What it does |
 |---|---|
-| `MissionFail.sol` | Failure-detection and quorum-voting FSM: UAVs heartbeat, the authority opens an incident on timeout/misbehavior, peers vote, the mission reconfigures or degrades. |
-| `MissionFormation.sol` | Formation-keeping FSM: tracks each UAV's distance to the swarm centroid, votes on violations, degrades/recovers the mission. |
-| `MissionRecon.sol` | Reconnaissance leader-election FSM: scores UAVs by battery/speed, elects a leader on-chain, collects the mission report, re-elects on timeout. |
+| `MissionFail.sol` | Failure detection and quorum voting FSM: UAVs heartbeat, the authority opens an incident on timeout/misbehavior, peers vote, the mission reconfigures or degrades. |
+| `MissionFormation.sol` | Formation keeping FSM: tracks each UAV's distance to the swarm centroid, votes on violations, degrades/recovers the mission. |
+| `MissionRecon.sol` | Reconnaissance leader election FSM: scores UAVs by battery/speed, elects a leader on-chain, collects the mission report, re-elects on timeout. |
 
 ## Scripts (`smartcontracts/scripts/`)
 
